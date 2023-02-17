@@ -15,7 +15,7 @@ const Home = () => {
         if (!res.ok) throw new Error("Somthing went wrong");
         const data = await res.json();
         setProjects(data);
-        console.log(data);
+        // console.log(data);
         setLoading(false);
       } catch (err) {
         setError(err.message);
