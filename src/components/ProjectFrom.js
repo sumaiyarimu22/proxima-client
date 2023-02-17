@@ -38,7 +38,7 @@ const ProjectFrom = () => {
       setDev("");
       setError(null);
 
-      console.log("new project has been added to the db", json);
+      // console.log("new project has been added to the db", json);
     }
   };
 
