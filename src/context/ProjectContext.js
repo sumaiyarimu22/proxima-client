@@ -1,32 +1,35 @@
 import { createContext, useReducer } from "react";
 
-const initalState = {
-  projects: null,
+const initialState = {
+  projects: [],
 };
+
 export const projectReducer = (state, action) => {
   switch (action.type) {
-    case "SET_PROJECTs":
+    case "SET_PROJECT":
       return {
+        ...state,
         projects: action.payload,
       };
     case "CREATE_PROJECT":
       return {
+        ...state,
         projects: [action.payload, ...state.projects],
       };
     default:
       return state;
   }
 };
-export const ProjectContext = createContext();
 
-//create provider--top label component wrap ,provider provide state
-export const ProjectContextProvider = ({ Children }) => {
-  //dispatch =  dispatch(type=ki dhoroner action,payload= ki data) for state menuplate
-  const [state, dispatch] = useReducer(projectReducer, initalState);
+export const ProjectContext = createContext();
+export const ProjectContextProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(projectReducer, initialState);
 
   return (
     <ProjectContext.Provider value={{ ...state, dispatch }}>
-      {Children}
+      {children}
     </ProjectContext.Provider>
   );
 };
+
+//import createContext,create ProjectContext call createCOntext, create ProjectContextProvider then return provider ,declire state with useReducer(reducer,initalState) and return arry [state,dispatch]   , provider value added, top declire initalState, create projectReducer function, action= type--"CREATE_PROJECT" / payload-- data
