@@ -1,5 +1,7 @@
 import { currencyFormater } from "../utils/currencyFormater";
 import { useProjectContext } from "../hooks/useProjectContext";
+import moment from "moment";
+
 const ProjectDetails = ({ project }) => {
   const { dispatch } = useProjectContext();
 
@@ -18,7 +20,7 @@ const ProjectDetails = ({ project }) => {
   };
 
   return (
-    <div className="project bg-slate-800 p-5 rounded-xl gap-5 shadow-xl border border-slate-700 flex flex-col w-[25rem]">
+    <div className="project bg-slate-800 p-4 rounded-xl gap-5 shadow-xl border border-slate-700 flex flex-col w-[25rem]">
       <div className="top">
         <span className="text-sky-400">ID : {project._id}</span>
         <h3 className="text-3xl font-medium truncate">{project.title}</h3>
@@ -30,10 +32,10 @@ const ProjectDetails = ({ project }) => {
         <div className="left flex flex-col">
           <span>Bugget: {currencyFormater(project.budget)}</span>
           <span>
-            Added on: {new Date(project.createdAt).toLocaleDateString()}
+            Added: {moment(project.createdAt).format("MMM-DD, hh:mm A")}
           </span>
           <span>
-            Last updated: {new Date(project.updatedAt).toLocaleDateString()}
+            updated: {moment(project.updatedAt).format("MMM-DD, hh:mm A")}
           </span>
         </div>
         <div className="right flex flex-col">
