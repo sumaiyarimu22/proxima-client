@@ -6,6 +6,14 @@ const Navbar = () => {
       <Link className="logo text-2xl font-medium text-sky-400" to="/">
         Proxima
       </Link>
+      <nav className="flex gap-5">
+        <Link to="/login" className="hover:text-sky-400 duration-300">
+          Login
+        </Link>
+        <Link to="/signup" className="hover:text-sky-400 duration-300">
+          Sign up
+        </Link>
+      </nav>
     </div>
   );
 };
