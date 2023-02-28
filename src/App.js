@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
-import Singup from "./pages/Signup";
+import Signup from "./pages/Signup";
 import { useAuthContext } from "./hooks/useAuthContext";
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
         />
         <Route
           path="/signup"
-          element={!user ? <Singup /> : <Navigate to="/" />}
+          element={!user ? <Signup /> : <Navigate to="/" />}
         />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

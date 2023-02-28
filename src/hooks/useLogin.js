@@ -31,6 +31,7 @@ export const useLogin = () => {
       dispatch({ type: "LOGIN", Payload: json });
       //save user to local storage
       localStorage.setItem("user", JSON.stringify(json));
+
       setLoading(false);
     }
   };
