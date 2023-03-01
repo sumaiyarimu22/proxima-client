@@ -28,7 +28,8 @@ export const useLogin = () => {
     //res.ok===true
     if (res.ok) {
       //update auth content
-      dispatch({ type: "LOGIN", Payload: json });
+      console.log(json);
+      dispatch({ type: "LOGIN", payload: json });
       //save user to local storage
       localStorage.setItem("user", JSON.stringify(json));
 
