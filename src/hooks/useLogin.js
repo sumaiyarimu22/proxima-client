@@ -10,13 +10,16 @@ export const useLogin = () => {
     setLoading(true);
     setError(null);
 
-    const res = await fetch("http://localhost:5000/api/user/login", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
+    const res = await fetch(
+      `${process.env.REACT_APP_BASE_URL}/api/user/login`,
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      }
+    );
     const json = await res.json();
 
     //res.ok===false
@@ -28,7 +31,7 @@ export const useLogin = () => {
     //res.ok===true
     if (res.ok) {
       //update auth content
-      console.log(json);
+      // console.log(json);
       dispatch({ type: "LOGIN", payload: json });
       //save user to local storage
       localStorage.setItem("user", JSON.stringify(json));
