@@ -3,18 +3,27 @@ import { useProjectContext } from "../hooks/useProjectContext";
 import moment from "moment";
 import { useState } from "react";
 import ProjectForm from "./ProjectFrom";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const ProjectDetails = ({ project }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
 
   const { dispatch } = useProjectContext();
+  const { user } = useAuthContext();
 
   const handleDelete = async () => {
+    if (!user) {
+      return;
+    }
+
     const res = await fetch(
       `http://localhost:5000/api/projects/${project._id}`,
       {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
       }
     );
     const json = await res.json();
@@ -34,7 +43,7 @@ const ProjectDetails = ({ project }) => {
     setIsOverlayOpen(false);
   };
   return (
-    <div className="project bg-slate-800 p-4 rounded-xl gap-5 shadow-xl border border-slate-700 flex flex-col w-[25rem]">
+    <div className="project bg-slate-800 p-4 rounded-xl gap-5 shadow-xl border border-slate-700 flex flex-col w-full md:w-[25rem]">
       <div className="top">
         <span className="text-sky-400">ID : {project._id}</span>
         <h3 className="text-3xl font-medium truncate">{project.title}</h3>

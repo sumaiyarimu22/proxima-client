@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useProjectContext } from "../hooks/useProjectContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const ProjectFrom = ({ project, setIsModalOpen, setIsOverlayOpen }) => {
   const [title, setTitle] = useState(project ? project.title : "");
@@ -12,9 +13,15 @@ const ProjectFrom = ({ project, setIsModalOpen, setIsOverlayOpen }) => {
   const [emptyFields, setEmptyFields] = useState([]);
 
   const { dispatch } = useProjectContext();
+  const { user } = useAuthContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!user) {
+      setError("you must be logged in!");
+      return;
+    }
     //data
     const projectObj = { title, tech, budget, duration, manager, dev };
 
@@ -25,6 +32,7 @@ const ProjectFrom = ({ project, setIsModalOpen, setIsOverlayOpen }) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
         },
         body: JSON.stringify(projectObj),
       });
@@ -62,6 +70,7 @@ const ProjectFrom = ({ project, setIsModalOpen, setIsOverlayOpen }) => {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
           },
           body: JSON.stringify(projectObj),
         }
@@ -114,7 +123,7 @@ const ProjectFrom = ({ project, setIsModalOpen, setIsOverlayOpen }) => {
           id="title"
           placeholder="e.g. e-commerce website"
           className={`bg-transparent border  py-2 px-5 rounded-lg outline-none focus:border-sky-400 duration-300 ${
-            emptyFields.includes("title")
+            emptyFields?.includes("title")
               ? "border-rose-500"
               : "border-slate-500"
           }`}
@@ -134,7 +143,7 @@ const ProjectFrom = ({ project, setIsModalOpen, setIsOverlayOpen }) => {
           id="tech"
           placeholder="e.g. node js react"
           className={`bg-transparent border  py-2 px-5 rounded-lg outline-none focus:border-sky-400 duration-300 ${
-            emptyFields.includes("tech")
+            emptyFields?.includes("tech")
               ? "border-rose-500"
               : "border-slate-500"
           }`}
@@ -154,7 +163,7 @@ const ProjectFrom = ({ project, setIsModalOpen, setIsOverlayOpen }) => {
           id="budget"
           placeholder="e.g. 500"
           className={`bg-transparent border  py-2 px-5 rounded-lg outline-none focus:border-sky-400 duration-300 ${
-            emptyFields.includes("budget")
+            emptyFields?.includes("budget")
               ? "border-rose-500"
               : "border-slate-500"
           }`}
@@ -174,7 +183,7 @@ const ProjectFrom = ({ project, setIsModalOpen, setIsOverlayOpen }) => {
           id="duration"
           placeholder="e.g. 4 weeks"
           className={`bg-transparent border  py-2 px-5 rounded-lg outline-none focus:border-sky-400 duration-300 ${
-            emptyFields.includes("duration")
+            emptyFields?.includes("duration")
               ? "border-rose-500"
               : "border-slate-500"
           }`}
@@ -194,7 +203,7 @@ const ProjectFrom = ({ project, setIsModalOpen, setIsOverlayOpen }) => {
           id="manager"
           placeholder="e.g. project manager name"
           className={`bg-transparent border  py-2 px-5 rounded-lg outline-none focus:border-sky-400 duration-300 ${
-            emptyFields.includes("manager")
+            emptyFields?.includes("manager")
               ? "border-rose-500"
               : "border-slate-500"
           }`}
@@ -214,7 +223,9 @@ const ProjectFrom = ({ project, setIsModalOpen, setIsOverlayOpen }) => {
           id="dev"
           placeholder="e.g. 5"
           className={`bg-transparent border  py-2 px-5 rounded-lg outline-none focus:border-sky-400 duration-300 ${
-            emptyFields.includes("dev") ? "border-rose-500" : "border-slate-500"
+            emptyFields?.includes("dev")
+              ? "border-rose-500"
+              : "border-slate-500"
           }`}
         />
       </div>
