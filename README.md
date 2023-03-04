@@ -19,27 +19,37 @@ Proxima is a powerful project management app built using the MERN stack. With Or
 
 ## Installation
 
-1. Clone the repository:
+# Clone the client repository
+git clone https://github.com/sumaiyarimu22/proxima-client.git
 
+# Clone the server repository
+git clone https://github.com/sumaiyarimu22/proxima-server.git
 
-2. To install Orbit Council, follow these simple steps:
+# Install dependencies for both client and server
+cd proxima-client
+npm install
+cd ../proxima-server
+npm install
 
-Clone the client repository using git clone https://github.com/sumaiyarimu22/proxima-client.git
-Clone the server repository using git https://github.com/sumaiyarimu22/proxima-server.git
-Install the required dependencies by running npm install or npm i in both the client and server directories.
-Create a .env file in the root directory of server and add the following variables:
-MONGO_URI: the MongoDB connection string
-SECRET: a secret string for JWT authentication
-Create a .env file in the root directory of client and add the following variable:
-REACT_APP_BASE_URL: for example http://localhost:5000
-Start the backend server by running npm start.
-Start the frontend by running npm start.
+# Create .env file for server
+cd ..
+touch .env
+echo "MONGO_URI=your_MongoDB_connection_string" >> .env
+echo "SECRET=your_secret_string_for_JWT_authentication" >> .env
 
+# Create .env file for client
+cd proxima-client
+touch .env
+echo "REACT_APP_BASE_URL=http://localhost:5000" >> .env
 
-3. Create a `.env` file in the root directory and add your MongoDB URL and JWT secret key:
+# Start the backend server
+cd ../proxima-server
+npm start
 
+# Start the frontend
+cd ../proxima-client
+npm start
 
-4. Start the application:
 
 
 ## Links
