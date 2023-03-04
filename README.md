@@ -10,12 +10,13 @@ Proxima is a powerful project management app built using the MERN stack. With Or
 
 ## Tools Used
 
-- MongoDB
-- Express
-- React
-- Node.js
-- JWT
-- Tailwind CSS
+Technologies used in Proxima:
+- MongoDB: A highly flexible NoSQL database, ideal for managing large and complex data sets.
+- Express: A popular and highly flexible backend web application framework for Node.js.
+- React: A powerful and popular frontend JavaScript library, ideal for building user interfaces.
+- Node.js: A powerful and popular server-side JavaScript runtime environment.
+- Tailwind CSS: A highly customizable CSS framework, designed to make building sleek and intuitive user interfaces a breeze.
+
 
 ## Installation
 
