@@ -28,14 +28,17 @@ const ProjectFrom = ({ project, setIsModalOpen, setIsOverlayOpen }) => {
     //if there is no project send post req
     if (!project) {
       //post request
-      const res = await fetch("http://localhost:5000/api/projects", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-        body: JSON.stringify(projectObj),
-      });
+      const res = await fetch(
+        "https://proxima-sene.onrender.com/api/projects",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+          body: JSON.stringify(projectObj),
+        }
+      );
       const json = await res.json();
 
       //!req.ok, set error
