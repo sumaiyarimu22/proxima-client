@@ -12,7 +12,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar container mx-auto h-20 flex items-center border-b border-sky-900 justify-between">
+    <div className="navbar container mx-auto h-20 flex items-center border-b border-3 border-sky-600 justify-between">
       <Link className="logo text-2xl font-medium text-sky-400" to="/">
         Proxima
       </Link>
